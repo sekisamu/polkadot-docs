@@ -1,3 +1,4 @@
 nav:
-- 'PVM': uniswap-v2-pvm.md
-- 'REVM': uniswap-v2-revm.md
+- 'Overview': index.md
+- 'V2 Core': core
+- 'V2 Periphery': periphery
