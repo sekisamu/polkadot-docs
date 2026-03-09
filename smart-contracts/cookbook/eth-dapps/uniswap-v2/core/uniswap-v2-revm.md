@@ -1,16 +1,16 @@
 ---
-title: Uniswap V2 with REVM on Polkadot
-description: Deploy and test unmodified Uniswap V2 contracts on Polkadot Hub using standard Hardhat and TypeScript with the REVM execution path.
+title: Uniswap V2 Core with REVM on Polkadot
+description: Deploy and test unmodified Uniswap V2 Core contracts on Polkadot Hub using standard Hardhat and TypeScript with the REVM execution path.
 tutorial_badge: Intermediate
 categories: dApps, Tooling
 tools: Hardhat
 ---
 
-# Deploy Uniswap V2 with REVM
+# Deploy Uniswap V2 Core with REVM
 
 ## Introduction
 
-Polkadot Hub supports two paths for running EVM smart contracts: [PVM](/smart-contracts/cookbook/eth-dapps/uniswap-v2/uniswap-v2-pvm/) (which compiles Solidity to the Polkadot Virtual Machine via the revive compiler) and REVM (which runs standard EVM bytecode with zero modifications). This tutorial follows the REVM path.
+Polkadot Hub supports two paths for running EVM smart contracts: [PVM](/smart-contracts/cookbook/eth-dapps/uniswap-v2/core/uniswap-v2-pvm/) (which compiles Solidity to the Polkadot Virtual Machine via the revive compiler) and REVM (which runs standard EVM bytecode with zero modifications). This tutorial follows the REVM path.
 
 With REVM, you deploy the same unmodified Solidity contracts using the same standard Hardhat toolchain you already know. No special compiler plugins, no contract rewrites, and no porting effort. If your project compiles with vanilla Hardhat, it runs on Polkadot Hub through REVM.
 
@@ -20,7 +20,7 @@ This tutorial walks you through cloning, compiling, testing, and deploying [Unis
 
 Before starting, make sure you have:
 
-- [Node.js](https://nodejs.org/){target=\_blank} v16.0.0 or later and npm installed
+- [Node.js](https://nodejs.org/){target=\_blank} v22.0.0 or later and npm installed
 - Basic understanding of [Solidity](https://www.soliditylang.org/){target=\_blank} and TypeScript
 - Familiarity with the [Hardhat](/smart-contracts/dev-environments/hardhat/) development environment
 - Some test tokens to cover transaction fees, obtained from the [Polkadot faucet](https://faucet.polkadot.io/){target=\_blank}. See [Get Test Tokens](/smart-contracts/faucet/#get-test-tokens) for a guide to using the faucet
@@ -29,13 +29,13 @@ Before starting, make sure you have:
 
 ## Set Up the Project
 
-Start by cloning the REVM Hardhat examples repository, which contains the Uniswap V2 project with a standard Hardhat and TypeScript configuration:
+Start by cloning the REVM Hardhat examples repository, which contains the Uniswap V2 Core project with a standard Hardhat and TypeScript configuration:
 
 1. Clone the repository and navigate to the Uniswap V2 project:
 
     ```bash
     git clone https://github.com/polkadot-developers/revm-hardhat-examples.git
-    cd revm-hardhat-examples/uniswap-v2-hardhat/
+    cd revm-hardhat-examples/uniswap-v2-core-hardhat/
     ```
 
 2. Install the required dependencies:
@@ -90,7 +90,7 @@ networks: {
 !!! note
     You only need the `TESTNET_PRIVATE_KEY` variable when deploying to the Polkadot Hub TestNet. Local development against the development node does not require any key configuration.
 
-## Uniswap V2 Architecture
+## Uniswap V2 Core Architecture
 
 Before interacting with the contracts, it is essential to understand the core architecture that powers Uniswap V2. This model forms the basis of nearly every modern DEX implementation and operates under automated market making, token pair liquidity pools, and deterministic pricing principles.
 
@@ -104,7 +104,7 @@ This architecture enables Uniswap to be highly modular, trustless, and extensibl
 The project scaffolding is as follows:
 
 ```text
-uniswap-v2-hardhat/
+uniswap-v2-core-hardhat/
 ├── contracts/
 │   ├── interfaces/
 │   │   ├── IERC20.sol
@@ -192,13 +192,21 @@ The deployment script outputs the addresses of all deployed contracts. Save thes
 
 <div class="grid cards" markdown>
 
--   <span class="badge tutorial">Tutorial</span> __Deploy Uniswap V2 (PVM)__
+-   <span class="badge tutorial">Tutorial</span> __Deploy Uniswap V2 Periphery (REVM)__
 
     ---
 
-    Deploy Uniswap V2 using the PVM execution path with the revive compiler for Polkadot-native bytecode.
+    Deploy Router contracts for user-facing swaps, liquidity management, and WETH wrapping on top of V2 Core.
 
-    [:octicons-arrow-right-24: Get Started](/smart-contracts/cookbook/eth-dapps/uniswap-v2/uniswap-v2-pvm/)
+    [:octicons-arrow-right-24: Get Started](/smart-contracts/cookbook/eth-dapps/uniswap-v2/periphery/uniswap-v2-periphery-revm/)
+
+-   <span class="badge tutorial">Tutorial</span> __Deploy Uniswap V2 Core (PVM)__
+
+    ---
+
+    Deploy Uniswap V2 Core using the PVM execution path with the revive compiler for Polkadot-native bytecode.
+
+    [:octicons-arrow-right-24: Get Started](/smart-contracts/cookbook/eth-dapps/uniswap-v2/core/uniswap-v2-pvm/)
 
 -   <span class="badge guide">Guide</span> __Hardhat on Polkadot__
 
@@ -207,13 +215,5 @@ The deployment script outputs the addresses of all deployed contracts. Save thes
     Learn how to create, compile, test, and deploy smart contracts on Polkadot Hub using Hardhat.
 
     [:octicons-arrow-right-24: Reference](/smart-contracts/dev-environments/hardhat/)
-
--   <span class="badge guide">Guide</span> __Local Development Node__
-
-    ---
-
-    Set up and run a local development node for testing your smart contracts against Polkadot.
-
-    [:octicons-arrow-right-24: Set Up](/smart-contracts/dev-environments/local-dev-node/)
 
 </div>
