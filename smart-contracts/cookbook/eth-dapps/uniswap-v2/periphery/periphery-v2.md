@@ -22,8 +22,8 @@ Before starting, make sure you have:
 
 - [Node.js](https://nodejs.org/){target=\_blank} v22.0.0 or later and npm installed
 - Basic understanding of [Solidity](https://www.soliditylang.org/){target=\_blank} and TypeScript
-- Familiarity with the [Hardhat](/smart-contracts/dev-environments/hardhat/) development environment
-- Some test tokens to cover transaction fees, obtained from the [Polkadot faucet](https://faucet.polkadot.io/){target=\_blank}. See [Get Test Tokens](/smart-contracts/faucet/#get-test-tokens) for a guide to using the faucet
+- Familiarity with the [Hardhat](/smart-contracts/dev-environments/hardhat/){target=\_blank} development environment
+- Some test tokens to cover transaction fees, obtained from the [Polkadot faucet](https://faucet.polkadot.io/){target=\_blank}. See [Get Test Tokens](/smart-contracts/faucet/#get-test-tokens){target=\_blank} for a guide to using the faucet
 - A wallet with a private key for signing transactions
 - Basic understanding of how AMMs and liquidity pools work
 - Completion of the [Uniswap V2 Core tutorial](/smart-contracts/cookbook/eth-dapps/uniswap-v2/core/core-v2/), as the Periphery contracts depend on V2 Core
@@ -36,7 +36,9 @@ Start by cloning the Hardhat examples repository, which contains the Uniswap V2 
 
     ```bash
     git clone https://github.com/polkadot-developers/revm-hardhat-examples.git
-    cd revm-hardhat-examples/uniswap-v2-periphery-hardhat/
+    cd revm-hardhat-examples
+    git checkout a871364c8f4da052855b5c8ee4ed6b89fd182cb1
+    cd uniswap-v2-periphery-hardhat/
     ```
 
 2. Install the required dependencies:
@@ -78,17 +80,7 @@ When prompted, paste your private key. Hardhat stores it securely and makes it a
 The `hardhat.config.ts` file references the variable conditionally, so the project works without it for local development:
 
 ```typescript title="hardhat.config.ts"
-networks: {
-    localNode: {
-      url: "http://127.0.0.1:8545",
-    },
-    polkadotTestnet: {
-      url: "https://services.polkadothub-rpc.com/testnet",
-      accounts: vars.has("TESTNET_PRIVATE_KEY")
-        ? [vars.get("TESTNET_PRIVATE_KEY")]
-        : [],
-    },
-  },
+--8<-- 'https://raw.githubusercontent.com/polkadot-developers/revm-hardhat-examples/a871364c8f4da052855b5c8ee4ed6b89fd182cb1/uniswap-v2-periphery-hardhat/hardhat.config.ts:44:57'
 ```
 
 !!! note
@@ -100,9 +92,9 @@ Before interacting with the contracts, it is essential to understand how the Per
 
 The Periphery layer introduces three major components:
 
-- **WETH9 contract** - a standard Wrapped Ether contract that allows native ETH to be used as an ERC-20 token. The Router uses WETH to support functions that accept native ETH directly (such as `addLiquidityETH` and `swapExactETHForTokens`), wrapping and unwrapping it transparently.
-- **Router01 contract** - the original Router implementation providing core functions for adding and removing liquidity, and executing multi-hop token swaps through a path of pairs. It validates deadlines and minimum output amounts to protect users from slippage and front-running.
-- **Router02 contract** - the production Router that extends Router01 with additional support for fee-on-transfer tokens. Functions like `swapExactTokensForTokensSupportingFeeOnTransferTokens` handle tokens that deduct fees on every transfer, ensuring swaps complete correctly even when the received amount is less than the sent amount.
+- **WETH9 contract**: A standard Wrapped Ether contract that allows native ETH to be used as an ERC-20 token. The Router uses WETH to support functions that accept native ETH directly (such as `addLiquidityETH` and `swapExactETHForTokens`), wrapping and unwrapping it transparently.
+- **Router01 contract**: The original Router implementation providing core functions for adding and removing liquidity, and executing multi-hop token swaps through a path of pairs. It validates deadlines and minimum output amounts to protect users from slippage and front-running.
+- **Router02 contract**: The production Router that extends Router01 with additional support for fee-on-transfer tokens. Functions like `swapExactTokensForTokensSupportingFeeOnTransferTokens` handle tokens that deduct fees on every transfer, ensuring swaps complete correctly even when the received amount is less than the sent amount.
 
 This architecture separates user-facing logic from the core AMM primitives, keeping the Core contracts simple and immutable while allowing the Periphery to evolve independently.
 
@@ -151,7 +143,7 @@ The project includes a comprehensive test suite with 50 tests across two test fi
 
 To run the tests locally:
 
-1. Start the local development node. Follow the steps in the [Local Development Node](/smart-contracts/dev-environments/local-dev-node/) guide to set it up
+1. Start the local development node. Follow the steps in the [Local Development Node](/smart-contracts/dev-environments/local-dev-node/){target=\_blank} guide to set it up.
 
 2. In a new terminal, run the test suite against the local node:
 
@@ -159,7 +151,7 @@ To run the tests locally:
     npx hardhat test --network localNode
     ```
 
-    The test suite uses a 120-second Mocha timeout to accommodate Polkadot network block times. The result should look similar to the following:
+    The tests are configured with a 120-second Mocha timeout to accommodate Polkadot network block times. The result should look similar to the following:
 
     --8<-- 'code/smart-contracts/cookbook/eth-dapps/uniswap-v2-periphery/periphery-v2/testing-output.html'
 
