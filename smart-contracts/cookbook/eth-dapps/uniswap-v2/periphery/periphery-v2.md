@@ -1,18 +1,18 @@
 ---
-title: Uniswap V2 Periphery with REVM on Polkadot
-description: Deploy and test unmodified Uniswap V2 Periphery Router contracts on Polkadot Hub using standard Hardhat and TypeScript with the REVM execution path.
+title: Uniswap V2 Periphery with EVM on Polkadot
+description: Deploy and test unmodified Uniswap V2 Periphery Router contracts on Polkadot Hub using standard Hardhat and TypeScript with the EVM execution path.
 tutorial_badge: Intermediate
-categories: dApps, Tooling
+categories: Smart Contracts, Tooling
 tools: Hardhat
 ---
 
-# Deploy Uniswap V2 Periphery with REVM
+# Deploy Uniswap V2 Periphery with EVM
 
 ## Introduction
 
-The [Uniswap V2 Periphery](https://docs.uniswap.org/contracts/v2/reference/smart-contracts/router-02){target=\_blank} contracts provide the Router layer that sits on top of the [Uniswap V2 Core](/smart-contracts/cookbook/eth-dapps/uniswap-v2/core/uniswap-v2-revm/) Factory and Pair contracts. While V2 Core handles the low-level AMM logic, the Periphery Router contracts expose the user-facing functions for adding liquidity, removing liquidity, and executing token swaps safely with built-in deadline and slippage protection.
+The [Uniswap V2 Periphery](https://docs.uniswap.org/contracts/v2/reference/smart-contracts/router-02){target=\_blank} contracts provide the Router layer that sits on top of the [Uniswap V2 Core](/smart-contracts/cookbook/eth-dapps/uniswap-v2/core/core-v2/) Factory and Pair contracts. While V2 Core handles the low-level AMM logic, the Periphery Router contracts expose the user-facing functions for adding liquidity, removing liquidity, and executing token swaps safely with built-in deadline and slippage protection.
 
-This tutorial follows the REVM execution path. With REVM, you deploy the same unmodified Solidity contracts using the same standard Hardhat toolchain you already know. No special compiler plugins, no contract rewrites, and no porting effort. If your project compiles with vanilla Hardhat, it runs on Polkadot Hub through REVM.
+This tutorial follows the EVM execution path. With EVM (powered by [REVM](https://github.com/bluealloy/revm){target=\_blank}, a Rust implementation of the Ethereum Virtual Machine), you deploy the same unmodified Solidity contracts using the same standard Hardhat toolchain you already know. No special compiler plugins, no contract rewrites, and no porting effort. If your project compiles with vanilla Hardhat, it runs on Polkadot Hub through EVM.
 
 This tutorial walks you through cloning, compiling, testing, and deploying the Uniswap V2 Periphery contracts on Polkadot Hub using Hardhat and TypeScript. By the end, you will have a fully functioning WETH contract, Factory, Router02, two ERC-20 test tokens, and a trading pair deployed to either a local development node or the Polkadot Hub TestNet.
 
@@ -26,11 +26,11 @@ Before starting, make sure you have:
 - Some test tokens to cover transaction fees, obtained from the [Polkadot faucet](https://faucet.polkadot.io/){target=\_blank}. See [Get Test Tokens](/smart-contracts/faucet/#get-test-tokens) for a guide to using the faucet
 - A wallet with a private key for signing transactions
 - Basic understanding of how AMMs and liquidity pools work
-- Completion of the [Uniswap V2 Core REVM tutorial](/smart-contracts/cookbook/eth-dapps/uniswap-v2/core/uniswap-v2-revm/), as the Periphery contracts depend on V2 Core
+- Completion of the [Uniswap V2 Core tutorial](/smart-contracts/cookbook/eth-dapps/uniswap-v2/core/core-v2/), as the Periphery contracts depend on V2 Core
 
 ## Set Up the Project
 
-Start by cloning the REVM Hardhat examples repository, which contains the Uniswap V2 Periphery project with a standard Hardhat and TypeScript configuration:
+Start by cloning the Hardhat examples repository, which contains the Uniswap V2 Periphery project with a standard Hardhat and TypeScript configuration:
 
 1. Clone the repository and navigate to the Uniswap V2 Periphery project:
 
@@ -56,7 +56,7 @@ Start by cloning the REVM Hardhat examples repository, which contains the Uniswa
 
     If the compilation is successful, you should see output similar to the following:
 
-    --8<-- 'code/smart-contracts/cookbook/eth-dapps/uniswap-v2-periphery/uniswap-v2-periphery-revm/compilation-output.html'
+    --8<-- 'code/smart-contracts/cookbook/eth-dapps/uniswap-v2-periphery/periphery-v2/compilation-output.html'
 
     After running this command, the compiled artifacts (ABI and bytecode) appear in the `artifacts` directory.
 
@@ -96,7 +96,7 @@ networks: {
 
 ## Uniswap V2 Periphery Architecture
 
-Before interacting with the contracts, it is essential to understand how the Periphery layer extends the V2 Core system. While the [V2 Core](/smart-contracts/cookbook/eth-dapps/uniswap-v2/core/uniswap-v2-revm/) contracts handle low-level pool operations, the Periphery contracts provide a safe and convenient interface for end users and integrating applications.
+Before interacting with the contracts, it is essential to understand how the Periphery layer extends the V2 Core system. While the [V2 Core](/smart-contracts/cookbook/eth-dapps/uniswap-v2/core/core-v2/) contracts handle low-level pool operations, the Periphery contracts provide a safe and convenient interface for end users and integrating applications.
 
 The Periphery layer introduces three major components:
 
@@ -161,7 +161,7 @@ To run the tests locally:
 
     The test suite uses a 120-second Mocha timeout to accommodate Polkadot network block times. The result should look similar to the following:
 
-    --8<-- 'code/smart-contracts/cookbook/eth-dapps/uniswap-v2-periphery/uniswap-v2-periphery-revm/testing-output.html'
+    --8<-- 'code/smart-contracts/cookbook/eth-dapps/uniswap-v2-periphery/periphery-v2/testing-output.html'
 
 !!! tip
     If tests time out, ensure your local development node is running and accessible at `http://127.0.0.1:8545`.
@@ -192,19 +192,19 @@ This deploys to the actual Polkadot Hub TestNet. It requires test tokens, persis
 
 The deployment script outputs the addresses of all deployed contracts. Save these addresses, as you will need them to interact with the contracts. The output should look similar to the following:
 
---8<-- 'code/smart-contracts/cookbook/eth-dapps/uniswap-v2-periphery/uniswap-v2-periphery-revm/deployment-output.html'
+--8<-- 'code/smart-contracts/cookbook/eth-dapps/uniswap-v2-periphery/periphery-v2/deployment-output.html'
 
 ## Where to Go Next
 
 <div class="grid cards" markdown>
 
--   <span class="badge tutorial">Tutorial</span> __Deploy Uniswap V2 Core (REVM)__
+-   <span class="badge tutorial">Tutorial</span> __Deploy Uniswap V2 Core__
 
     ---
 
-    Deploy the underlying Uniswap V2 Factory and Pair contracts on Polkadot Hub using the REVM execution path.
+    Deploy the underlying Uniswap V2 Factory and Pair contracts on Polkadot Hub using Hardhat.
 
-    [:octicons-arrow-right-24: Get Started](/smart-contracts/cookbook/eth-dapps/uniswap-v2/core/uniswap-v2-revm/)
+    [:octicons-arrow-right-24: Get Started](/smart-contracts/cookbook/eth-dapps/uniswap-v2/core/core-v2/)
 
 -   <span class="badge guide">Guide</span> __Hardhat on Polkadot__
 

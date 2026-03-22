@@ -1,6 +1,7 @@
 ---
 title: Uniswap V2 on Polkadot
 description: Deploy and test the full Uniswap V2 stack on Polkadot Hub — from core AMM contracts to periphery router interfaces — using standard Ethereum tooling.
+categories: Smart Contracts, Tooling
 ---
 
 # Uniswap V2 on Polkadot
@@ -9,8 +10,8 @@ description: Deploy and test the full Uniswap V2 stack on Polkadot Hub — from 
 
 The Uniswap V2 stack is split into two layers:
 
-- **V2 Core** - the Factory and Pair contracts that implement the fundamental AMM logic, constant product pricing (x * y = k), and liquidity pool management
-- **V2 Periphery** - the Router contracts that provide user-facing functions for adding and removing liquidity, executing token swaps with slippage protection, and wrapping native ETH through WETH
+- **V2 Core**: The Factory and Pair contracts that implement the fundamental AMM logic, constant product pricing (x * y = k), and liquidity pool management.
+- **V2 Periphery**: The Router contracts that provide user-facing functions for adding and removing liquidity, executing token swaps with slippage protection, and wrapping native ETH through WETH.
 
 Polkadot Hub supports deploying these contracts with no modifications. The tutorials below walk you through deploying, testing, and interacting with each layer.
 
@@ -18,28 +19,20 @@ Polkadot Hub supports deploying these contracts with no modifications. The tutor
 
 <div class="grid cards" markdown>
 
--   <span class="badge tutorial">Tutorial</span> __V2 Core (REVM)__
+-   <span class="badge tutorial">Tutorial</span> __V2 Core__
 
     ---
 
-    Deploy unmodified Uniswap V2 Factory and Pair contracts on Polkadot Hub using standard Hardhat with the REVM execution path.
+    Deploy unmodified Uniswap V2 Factory and Pair contracts on Polkadot Hub using Hardhat. Supports both EVM and PVM execution paths.
 
-    [:octicons-arrow-right-24: Get Started](/smart-contracts/cookbook/eth-dapps/uniswap-v2/core/uniswap-v2-revm/)
+    [:octicons-arrow-right-24: Get Started](/smart-contracts/cookbook/eth-dapps/uniswap-v2/core/core-v2/)
 
--   <span class="badge tutorial">Tutorial</span> __V2 Core (PVM)__
-
-    ---
-
-    Deploy Uniswap V2 using the PVM execution path with the revive compiler for Polkadot-native bytecode.
-
-    [:octicons-arrow-right-24: Get Started](/smart-contracts/cookbook/eth-dapps/uniswap-v2/core/uniswap-v2-pvm/)
-
--   <span class="badge tutorial">Tutorial</span> __V2 Periphery (REVM)__
+-   <span class="badge tutorial">Tutorial</span> __V2 Periphery__
 
     ---
 
     Deploy Router contracts for user-facing swaps, liquidity management, and WETH wrapping on top of V2 Core.
 
-    [:octicons-arrow-right-24: Get Started](/smart-contracts/cookbook/eth-dapps/uniswap-v2/periphery/uniswap-v2-periphery-revm/)
+    [:octicons-arrow-right-24: Get Started](/smart-contracts/cookbook/eth-dapps/uniswap-v2/periphery/periphery-v2/)
 
 </div>
