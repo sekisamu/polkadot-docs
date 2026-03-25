@@ -2,7 +2,7 @@
 title: Opening HRMP Channels Between Parachains
 description: Learn how to open HRMP channels between parachains on Polkadot. Discover the step-by-step process for establishing uni- and bidirectional communication.
 tutorial_badge: Advanced
-categories: Parachains
+categories: Parachains, Interoperability
 ---
 
 # Opening HRMP Channels Between Parachains
@@ -193,7 +193,7 @@ By following these steps, you will have successfully accepted the HRMP channel r
 
 <div class="status-badge" markdown>
 [![Channels Between Parachains](https://github.com/polkadot-developers/polkadot-cookbook/actions/workflows/polkadot-docs-channels-between-parachains.yml/badge.svg?event=push)](https://github.com/polkadot-developers/polkadot-cookbook/actions/workflows/polkadot-docs-channels-between-parachains.yml){target=\_blank}
-[:material-code-tags: View tests](https://github.com/polkadot-developers/polkadot-cookbook/blob/master/polkadot-docs/parachains/interoperability/channels-between-parachains/tests/guide.test.ts){ .tests-button target=\_blank}
+[:material-code-tags: View tests](https://github.com/polkadot-developers/polkadot-cookbook/blob/master/polkadot-docs/parachains/interoperability/channels-between-parachains/tests/docs.test.ts){ .tests-button target=\_blank}
 </div>
 
 !!! note

@@ -1,10 +1,14 @@
 ---
 title: Create an Account
 description: Step-by-step guide to creating Polkadot accounts using different programming languages and libraries, including JavaScript, Python, and Rust examples.
-categories: Basics, Accounts, Developer Tools
+categories: Basics, Chain Interactions
 ---
 
 # Create an Account
+
+<div class="status-badge" markdown>
+[![Create an Account](https://github.com/polkadot-developers/polkadot-cookbook/actions/workflows/polkadot-docs-create-account.yml/badge.svg?event=push)](https://github.com/polkadot-developers/polkadot-cookbook/actions/workflows/polkadot-docs-create-account.yml){target=\_blank}
+</div>
 
 ## Introduction
 
@@ -148,6 +152,11 @@ Rust provides low-level access to Substrate primitives for account creation thro
     You should see output similar to:
 
     --8<-- 'code/chain-interactions/accounts/create-account/create-account-rs.html'
+
+<div class="status-badge" markdown>
+[![Create an Account](https://github.com/polkadot-developers/polkadot-cookbook/actions/workflows/polkadot-docs-create-account.yml/badge.svg?event=push)](https://github.com/polkadot-developers/polkadot-cookbook/actions/workflows/polkadot-docs-create-account.yml){target=\_blank}
+[:material-code-tags: View tests](https://github.com/polkadot-developers/polkadot-cookbook/blob/master/polkadot-docs/chain-interactions/create-account/tests/docs.test.ts){ .tests-button target=\_blank}
+</div>
 
 ## Where to Go Next
 

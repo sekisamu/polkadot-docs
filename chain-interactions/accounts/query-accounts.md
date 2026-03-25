@@ -1,10 +1,14 @@
 ---
 title: Query Account Information with SDKs
 description: Learn how to query account information using five popular SDKs—Polkadot API (PAPI), Polkadot.js API, Dedot, Python Substrate Interface, and Subxt.
-categories: Basics, Polkadot Protocol
+categories: Chain Interactions, Tooling
 ---
 
 # Query Account Information with SDKs
+
+<div class="status-badge" markdown>
+[![Query Account Information](https://github.com/polkadot-developers/polkadot-cookbook/actions/workflows/polkadot-docs-query-accounts.yml/badge.svg?event=push)](https://github.com/polkadot-developers/polkadot-cookbook/actions/workflows/polkadot-docs-query-accounts.yml){target=\_blank}
+</div>
 
 ## Introduction
 
@@ -237,7 +241,7 @@ Select your preferred SDK below to see complete, runnable examples that query ac
     2. Install the Subxt CLI:
 
         ```bash
-        cargo install subxt-cli@0.35.3
+        cargo install subxt-cli@0.50.0
         ```
 
     3. Download the Polkadot Hub metadata:
@@ -259,7 +263,7 @@ Select your preferred SDK below to see complete, runnable examples that query ac
         path = "src/bin/query_account.rs"
 
         [dependencies]
-        subxt = { version = "0.44.0" }
+        subxt = { version = "0.50.0" }
         tokio = { version = "1.36.0", features = ["macros", "rt"] }
         ```
 
@@ -299,6 +303,11 @@ When querying account information, you'll receive several key fields:
 - **Frozen Balance**: Balance that cannot be used for transfers but may be used for other operations.
 
 The total balance is the sum of free and reserved balances.
+
+<div class="status-badge" markdown>
+[![Query Account Information](https://github.com/polkadot-developers/polkadot-cookbook/actions/workflows/polkadot-docs-query-accounts.yml/badge.svg?event=push)](https://github.com/polkadot-developers/polkadot-cookbook/actions/workflows/polkadot-docs-query-accounts.yml){target=\_blank}
+[:material-code-tags: View tests](https://github.com/polkadot-developers/polkadot-cookbook/blob/master/polkadot-docs/chain-interactions/query-accounts/tests/docs.test.ts){ .tests-button target=\_blank}
+</div>
 
 ## Where to Go Next
 

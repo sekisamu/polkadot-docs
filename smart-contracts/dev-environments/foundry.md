@@ -8,7 +8,7 @@ categories: Smart Contracts, Tooling
 
 ## Introduction
 
-[Foundry](https://book.getfoundry.sh/){target=\_blank} is a blazing fast, portable, and modular toolkit for Ethereum application development written in Rust. It consists of:
+[Foundry](https://www.getfoundry.sh/){target=\_blank} is a blazing fast, portable, and modular toolkit for Ethereum application development written in Rust. It consists of:
 
 - **Forge**: Command-line tool to test, build, and deploy smart contracts
 - **Cast**: Swiss army knife for interacting with contracts, sending transactions, and getting chain data
@@ -107,6 +107,9 @@ Foundry's nightly build includes native support for Polkadot chains with `polkad
 
 Create or modify your `foundry.toml` file:
 
+!!! note
+    The `[etherscan]` section is used for contract verification. Routescan requires an API key; Blockscout does not.
+
 === "Blockscout"
 
     ```toml title='foundry.toml'
@@ -116,7 +119,7 @@ Create or modify your `foundry.toml` file:
     libs = ["lib"]
     solc_version = "0.8.28"
 
-    [etherscan]
+    [etherscan] # Contract verification configuration
     polkadot-testnet = { key = "", url = "https://blockscout-testnet.polkadot.io/api?" }
     ```
 
@@ -129,14 +132,11 @@ Create or modify your `foundry.toml` file:
     libs = ["lib"]
     solc_version = "0.8.28"
 
-    [etherscan]
+    [etherscan] # Contract verification configuration
     polkadot-testnet = { key = "verifyContract", url = "https://api.routescan.io/v2/network/testnet/evm/420420417/etherscan" }
     ```
 
 With this configuration, you can use `--chain polkadot-testnet` in your commands without specifying the RPC URL explicitly.
-
-!!! note
-    The `[etherscan]` section is used for contract verification. Routescan requires an API key; Blockscout does not.
 
 ### Available Networks and RPC Endpoints
 
@@ -380,9 +380,9 @@ forge test --gas-report
 
 ## Additional Resources
 
-- **[Foundry Book](https://book.getfoundry.sh/){target=\_blank}**: Comprehensive Foundry documentation
-- **[Forge Documentation](https://book.getfoundry.sh/forge/){target=\_blank}**: Detailed guide to the Forge tool
-- **[Cast Documentation](https://book.getfoundry.sh/cast/){target=\_blank}**: Learn about Cast commands
+- **[Foundry Documentation](https://www.getfoundry.sh/){target=\_blank}**: Comprehensive Foundry documentation
+- **[Forge Documentation](https://www.getfoundry.sh/forge){target=\_blank}**: Detailed guide to the Forge tool
+- **[Cast Documentation](https://www.getfoundry.sh/cast){target=\_blank}**: Learn about Cast commands
 - **[Foundry GitHub](https://github.com/foundry-rs/foundry){target=\_blank}**: Source code and issue tracker
 
 ## Where to Go Next
